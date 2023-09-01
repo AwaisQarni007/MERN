@@ -21,8 +21,14 @@ mongoose.connect("mongodb+srv://muhammadawais:B_J!e.NX39Uw9_P@cluster0.fiu5izn.m
 
 
 const Todo = require('./models/Todo');
-apps.get('/todos', async (req, res) => {
+apps.get('/todos/', async (req, res) => {
     const todos = await Todo.find();
+
+    res.json(todos);
+
+});
+apps.get('/todos/:id', async (req, res) => {
+    const todos = await Todo.findById(req.params.id);
 
     res.json(todos);
 
@@ -32,6 +38,9 @@ apps.get('/todos', async (req, res) => {
 apps.post('/todo/new', (req, res) => {
     const todo = new Todo({
         text: req.body.text,
+        Name: req.body.Name,
+        Degree: req.body.Degree,
+        University: req.body.University,
     });
 
     todo.save();

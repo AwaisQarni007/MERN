@@ -1,6 +1,9 @@
 GET http://localhost:3001/todos
 
 ###
+GET http://localhost:3001/todos/64ee2dee9e47a6506f9d89eb
+
+###
 
 POST http://localhost:3001/todo/new
 Content-Type: application/json

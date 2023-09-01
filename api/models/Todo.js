@@ -9,6 +9,21 @@ const TodoSchema = new schema ({
         required:true,
         default:""
     },
+    // Name : {
+    //     type:String,
+    //     required:true,
+    //     default:""
+    // },
+    // Degree : {
+    //     type:String,
+    //     required:true,
+    //     default:""
+    // },
+    // University : {
+    //     type:String,
+    //     required:true,
+    //     default:""
+    // },
     complete :{
         type:Boolean,
         default:false,

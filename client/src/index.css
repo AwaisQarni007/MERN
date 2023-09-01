@@ -11,12 +11,12 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-
 	font-family: "Fira Sans", sans-serif;
 }
 
 body {
 	background-color: var(--dark-alt);
+	/* color: var(--light); */
 	color: var(--light);
 }
 
@@ -26,6 +26,7 @@ body {
 
 .card_data {
 	display: flex;
+	justify-content: space-between;
 }
 
 h1 {
@@ -121,9 +122,8 @@ h4 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-
 	width: 100%;
-	max-width: 400px;
+	max-width: 60%;
 	background-color: var(--light);
 	padding: 32px;
 	border-radius: 16px;
@@ -142,8 +142,9 @@ h4 {
 }
 
 .popup h3 {
-	color: var(--dark);
+	/* color: var(--dark); */
 	margin-bottom: 16px;
+	color: white;
 	font-weight: 400;
 	text-transform: uppercase;
 }
@@ -161,14 +162,22 @@ h4 {
 }
 
 .button {
+	position: relative;
+	top: 50%;
+	overflow: hidden;
+	border :1px solid white;
+	width: 40%;
 	padding: 16px 32px;
 	border-radius: 999px;
-	background-image: linear-gradient(to right, var(--primary), var(--secondary));
-	display: inline-block;
+	background-image: linear-gradient(65deg, rgb(255, 255, 255) 30%, rgb(0, 255, 21) 50%);
+	/* display: inline-block; */
+	overflow: hidden;
+	margin: 10px auto;
+	color: black;
 	font-weight: 700;
+
 	text-transform: uppercase;
 	font-size: 18px;
-	margin-top: 16px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -197,7 +206,7 @@ h4 {
 	margin: 1rem;
 	width: 230px;
 	border-radius: 20px;
-	background: #1b233d;
+	/* background: #1b233d; */
 	padding: 5px;
 	overflow: hidden;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
@@ -213,22 +222,69 @@ h4 {
 	border-radius: 15px;
 	display: flex;
 	flex-direction: column;
-	background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(80, 246, 255) 100%);
 	position: relative;
+	border: transparent;
 }
 
-.card .top-section .border {
+.card .top-section p {
+	position: relative;
+	top: 0;
+	left: 0;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-style: italic;
+	font-weight: 700;
+	padding: 10px;
+	margin: 5% 1%;
+	overflow: hidden;
+	animation: drop 2s 1 linear;
+}
+
+@keyframes drop {
+	0% {
+		top: -30%;
+	}
+
+	20% {
+		top: -20%;
+	}
+
+	40% {
+		top: -10%;
+	}
+
+	60% {
+		top: -50%;
+	}
+
+	80% {
+		top: 0%;
+	}
+
+
+}
+
+.background_default {
+	background: linear-gradient(65deg, rgb(255, 255, 255) 30%, rgb(255, 0, 0) 50%);
+}
+
+.background_success {
+	background: linear-gradient(65deg, rgb(255, 255, 255) 30%, rgb(0, 255, 21) 50%);
+}
+
+.card .top-section .border_1 {
 	border-bottom-right-radius: 10px;
 	height: 30px;
 	width: 130px;
-	background: white;
-	background: #1b233d;
+	background: #fff;
+	background: #ffffff27;
 	position: relative;
 	transform: skew(-40deg);
-	box-shadow: -10px -10px 0 0 #1b233d;
+	box-shadow: -10px -10px 0 0 #ffffff27;
 }
 
-.card .top-section .border::before {
+.card .top-section .border_1::before {
 	content: "";
 	position: absolute;
 	width: 15px;
@@ -237,7 +293,7 @@ h4 {
 	right: -15px;
 	background: rgba(255, 255, 255, 0);
 	border-top-left-radius: 10px;
-	box-shadow: -5px -5px 0 2px #1b233d;
+	box-shadow: -5px -5px 0 2px #ffffff27;
 }
 
 .card .top-section::before {
@@ -249,7 +305,7 @@ h4 {
 	height: 15px;
 	width: 15px;
 	border-top-left-radius: 15px;
-	box-shadow: -5px -5px 0 2px #1b233d;
+	box-shadow: -5px -5px 0 2px #ffffff27;
 }
 
 .card .top-section .icons {
@@ -279,12 +335,34 @@ h4 {
 }
 
 .card .top-section .icons .social-media .svg {
+	cursor: pointer;
 	height: 100%;
-	fill: #1b233d;
+	fill: white;
 }
 
 .card .top-section .icons .social-media .svg:hover {
-	fill: white;
+	fill: rgb(126, 118, 118);
+}
+
+.check_icon {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	cursor: pointer;
+	/* border: 1px solid red; */
+	padding: 5px;
+	border-radius: 10%;
+	fill: red;
+	background: transparent;
+}
+
+.check_icon:hover {
+	text-decoration: underline;
+	transition: 0.3s linear;
+	bottom: 10px;
+	/* transform:scale(1.2); */
+	/* background: rgba(0, 0, 0, 0.158); */
+	fill: red;
 }
 
 .card .bottom-section {
@@ -393,7 +471,7 @@ h4 {
 	left: 0;
 }
 
-.button {
+/* .button {
 	position: relative;
 	top: 50%;
 	width: 65px;
@@ -401,7 +479,7 @@ h4 {
 	margin: -20px auto 0 auto;
 	overflow: hidden;
 	margin: 0;
-}
+} */
 
 .button.r,
 .button.r .layer {
@@ -429,3 +507,214 @@ h4 {
 	transition: 0.3s ease all;
 	z-index: 1;
 }
+
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #000000;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border: 1px solid white
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	padding: 5px 10px;
+
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider,
+.slider {
+	background-color: rgb(0, 0, 0);
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+
+
+
+/* crousal css starts  */
+
+.slides {
+	display: grid;
+
+	>.slide {
+		grid-area: 1 / -1;
+	}
+
+	>button {
+		appearance: none;
+		background: transparent;
+		border: none;
+		color: white;
+		position: absolute;
+		font-size: 5rem;
+		width: 5rem;
+		height: 5rem;
+		top: 30%;
+		transition: opacity 0.3s;
+		opacity: 0.7;
+		z-index: 5;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:first-child {
+			left: -50%;
+		}
+
+		&:last-child {
+			right: -50%;
+		}
+	}
+}
+
+.slide {
+	/* //transform-style: preserve-3d;
+	// border: solid 1px red;
+
+	// &[data-active] {
+	//   .slideContent > * {
+	//     transform: none;
+	//     opacity: 1;
+	//   }
+	// } */
+}
+
+.slideContent {
+	width: 30vw;
+	height: 40vw;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition: transform 0.5s ease-in-out;
+	opacity: 0.7;
+
+	display: grid;
+	align-content: center;
+
+	transform-style: preserve-3d;
+	transform: perspective(1000px) translateX(calc(100% * var(--offset))) rotateY(calc(-45deg * var(--dir)));
+}
+
+.slideContentInner {
+	transform-style: preserve-3d;
+	transform: translateZ(2rem);
+	transition: opacity 0.3s linear;
+	text-shadow: 0 0.1rem 1rem #000;
+	opacity: 0;
+
+	.slideSubtitle,
+	.slideTitle {
+		font-size: 2rem;
+		font-weight: normal;
+		letter-spacing: 0.2ch;
+		text-transform: uppercase;
+		margin: 0;
+	}
+
+	.slideSubtitle::before {
+		content: "— ";
+	}
+
+	.slideDescription {
+		margin: 0;
+		font-size: 0.8rem;
+		letter-spacing: 0.2ch;
+	}
+}
+
+.slideBackground {
+	position: fixed;
+	top: 0;
+	left: -10%;
+	right: -10%;
+	bottom: 0;
+	background-size: cover;
+	background-position: center center;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.3s linear, transform 0.3s ease-in-out;
+	pointer-events: none;
+
+	transform: translateX(calc(10% * var(--dir)));
+}
+
+.slide[data-active] {
+	z-index: 2;
+	pointer-events: auto;
+
+	.slideBackground {
+		opacity: 0.2;
+		transform: none;
+	}
+
+	.slideContentInner {
+		opacity: 1;
+	}
+
+	.slideContent {
+		--x: calc(var(--px) - 0.5);
+		--y: calc(var(--py) - 0.5);
+		opacity: 1;
+
+		transform: perspective(1000px);
+
+		&:hover {
+			transition: none;
+			transform: perspective(1000px) rotateY(calc(var(--x) * 45deg)) rotateX(calc(var(--y) * -45deg));
+		}
+	}
+}
+
+/* crousal css ends  */
