@@ -1,7 +1,7 @@
 GET http://localhost:3001/todos
 
 ###
-GET http://localhost:3001/todos/64ee2dee9e47a6506f9d89eb
+GET http://localhost:3001/todos/64f1fd3e33ca447971055382
 
 ###
 
@@ -11,6 +11,19 @@ Content-Type: application/json
 {
     "text":"Deliver Pizza"
 }
+
+
+###
+PUT http://localhost:3001/todo/edit/64f1fd3e33ca447971055382
+Content-Type: application/json
+
+{
+    "text": "Physics",
+    "name": "Awais",
+    "degree": "Software Engineering 2",
+    "university": "UET"
+}
+
 
 ###
 

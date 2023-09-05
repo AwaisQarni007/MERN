@@ -55,51 +55,75 @@ function App() {
 
 
 	const [todos, setTodos] = useState([]);
-	// const [Name, setName] = useState([]);
-	// const [Degree, setDegree] = useState([]);
-	// const [University, setUniversity] = useState([]);
+	const [id, setId] = useState("");
+	const [name, setName] = useState("");
+	const [degree, setDegree] = useState("");
+	const [university, setUniversity] = useState("");
 	const [popupActive, setPopupActive] = useState(false);
+	const [editValue, setEditValue] = useState("");
 	const [newTodo, setNewTodo] = useState("");
+	const [EditMode, setEditMode] = useState(false);
+	const [darkMode, setdarkMode] = useState(false);
 
+	useEffect(() => {
+		getTodos();
+	}, []);
 
-	
+	const getTodos = async () => {
+		const data = await fetch(api_base + '/todos/').then(res => res.json());
 
-	const deleteTodo = async id => {
+		console.log("Array Found : ", data);
+		setTodos(data);
+		console.log("Todo is :  : ", todos);
+	};
+
+	const editUser = async (id) => {
 		console.log("Id is : ", id);
-		setTodos(todos => todos.filter(todo => todo._id !== id));
-		const data = await fetch(api_base + '/todo/delete/' + id, { method: "DELETE" }).then(res => res.json());
+		const data = await fetch(api_base + '/todos/' + id).then(res => res.json());
+		console.log("Data is : ", data);
+		setEditMode(!EditMode);
+		setId(id);
+		setPopupActive(true);
+		setEditValue(data.text);
+		setName(data.Name);
+		setDegree(data.Degree);
+		setUniversity(data.text)
+	};
 
-	}
 	const handleToggle = () => {
 		var element = document.body;
+		setdarkMode(!darkMode)
 		element.classList.toggle("dark-mode");
 	}
 
 	return (
 		<div className="App">
-			{/* <div className='carousel'>
-
-				<div className="slides">
-					<button onClick={() => dispatch({ type: "PREV" })}>‹</button>
-
-					{[...slides, ...slides, ...slides].map((slide, i) => {
-						let offset = slides.length + (state.slideIndex - i);
-						<Slide slide={slide} offset={offset} key={i} />;
-					})}
-					<button onClick={() => dispatch({ type: "NEXT" })}>›</button>
-				</div>
-			</div> */}
-
 			<label className="switch">
 				<input type="checkbox" onClick={handleToggle} />
 				<span className="slider round"></span>
 			</label>
-
-			<Card
-				api_base={api_base}
-				popupActive={popupActive}
-				setPopupActive={setPopupActive}
-				deleteTodo={deleteTodo} />
+			<div className='card_data'>
+				{todos.length > 0 ? (
+					todos.map((todo, index) => (
+						<Card
+							darkMode={darkMode}
+							setdarkMode={setdarkMode}
+							api_base={api_base}
+							popupActive={popupActive}
+							setPopupActive={setPopupActive}
+							todo={todo}
+							index={index}
+							setUniversity={setUniversity}
+							setDegree={setDegree}
+							setName={setName}
+							setEditValue={setEditValue}
+							editUser={editUser}
+							setTodos={setTodos}
+						/>
+					))
+				) : ''
+				}
+			</div>
 			{/* <h1>Welcome</h1>
 			<h4>Your tasks</h4>
 			<div className="">
@@ -123,19 +147,31 @@ function App() {
 				<AddModal show={showModal} handleClose={handleCloseModal} />
 			</div> */}
 
-			{/* {
+			{
 				popupActive ? (
 					<AddTodo
+						EditMode={EditMode}
+						setEditMode={setEditMode}
+						id={id}
+						setId={setId}
 						api_base={api_base}
 						setTodos={setTodos}
 						todos={todos}
+						setEditValue={setEditValue}
 						popupActive={popupActive} // Pass popupActive here
 						setPopupActive={setPopupActive}
 						newTodo={newTodo} // Pass newTodo here
 						setNewTodo={setNewTodo}
+						name={name}
+						degree={degree}
+						university={university}
+						editValue={editValue}
+						setName={setName}
+						setDegree={setDegree}
+						setUniversity={setUniversity}
 					/>
 				) : ''
-			} */}
+			}
 		</div >
 	);
 }

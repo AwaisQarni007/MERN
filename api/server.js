@@ -8,6 +8,7 @@ apps.use(express.json());
 apps.use(cors());
 
 // mongoose.connect("mongodb://127.0.0.1:27017/mern-todo", {
+    // mongodb+srv://muhammadawais:<password>@cluster0.fiu5izn.mongodb.net/
 mongoose.connect("mongodb+srv://muhammadawais:B_J!e.NX39Uw9_P@cluster0.fiu5izn.mongodb.net/", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -38,14 +39,35 @@ apps.get('/todos/:id', async (req, res) => {
 apps.post('/todo/new', (req, res) => {
     const todo = new Todo({
         text: req.body.text,
-        Name: req.body.Name,
-        Degree: req.body.Degree,
-        University: req.body.University,
+        Name: req.body.name,
+        Degree: req.body.degree,
+        University: req.body.university,
     });
 
     todo.save();
     res.json(todo);
 });
+
+apps.put('/todo/edit/:id', async (req, res) => {
+    try {
+      const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, {
+        text: req.body.text,
+        Name: req.body.name,
+        Degree: req.body.degree,
+        University: req.body.university,
+      }, { new: true }); // Adding { new: true } returns the updated document
+  
+      if (!updatedTodo) {
+        return res.status(404).json({ error: 'Todo not found' });
+      }
+  
+      res.json(updatedTodo);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 apps.delete('/todo/delete/:id',async (req, res) => {
     
     const result = await Todo.findByIdAndDelete(req.params.id);
